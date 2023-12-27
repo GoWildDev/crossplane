@@ -1,0 +1,21 @@
+apiVersion: azure.crossplane.io/v1alpha3
+kind: ResourceGroup
+metadata:
+  name: CHANGE_ME_RESOURCE_GROUP
+spec:
+  location: eastus
+
+---
+
+apiVersion: compute.azure.crossplane.io/v1alpha3
+kind: AKSCluster
+metadata:
+  name: worker
+spec:
+  location: eastus
+  version: "v1.27.3"
+  nodeVMSize: B2s
+  resourceGroupNameRef:
+    name: CHANGE_ME_RESOURCE_GROUP
+  dnsNamePrefix: worker
+  nodeCount: 2
